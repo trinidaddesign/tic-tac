@@ -6,7 +6,6 @@
 }
 
 :root{
-
   color: whitesmoke;
 }
 
@@ -47,11 +46,6 @@ body{
   cursor: pointer;
 }
 
-.cell.x,
-.cell.circle{
-	cursor: not-allowed;
-}
-
 .cell:first-child,
 .cell:nth-child(2),
 .cell:nth-child(3){
@@ -77,7 +71,9 @@ body{
 }
 
 .cell.x::before,
-.cell.x::after{
+.cell.x::after,
+.cell_Container.x .cell:not(.x):not(.circle):hover::before,
+.cell_Container.x .cell:not(.x):not(.circle):hover::after{
 	content: '';
 	width: 15px;
 	height: 115px;
@@ -85,16 +81,20 @@ body{
 	position: absolute;
 }
 
-.cell.x::before{
+.cell.x::before,
+.cell_Container.x .cell:not(.x):not(.circle):hover::before{
 	transform: rotate(45deg);
 }
 
-.cell.x::after{
+.cell.x::after, 
+.cell_Container.x .cell:not(.x):not(.circle):hover::after{
 	transform: rotate(-45deg);
 }
 
 .cell.circle::before,
-.cell.circle::after{
+.cell.circle::after,
+.cell_Container.circle .cell:not(.x):not(.circle):hover::before,
+.cell_Container.circle .cell:not(.x):not(.circle):hover::after{
 	content: '';
 	width: 105px;
 	height: 105px;
@@ -103,15 +103,22 @@ body{
 	border-radius: 50%;
 }
 
-.cell.circle::before{
+.cell.circle::before,
+.cell_Container.circle .cell:not(.x):not(.circle):hover::before{
 	width: 100px;
 	height: 105px;
 	background-color: whitesmoke;
 }
 
-.cell.circle::after{
+.cell.circle::after,
+.cell_Container.circle .cell:not(.x):not(.circle):hover::after{
 	width: calc(100px * .7);
 	height: calc(105px * .7);
 	background-color: black;
-
 }
+
+.cell.x,
+.cell.circle{
+	cursor: not-allowed;
+}
+
