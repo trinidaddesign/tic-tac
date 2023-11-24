@@ -105,14 +105,14 @@ body{
 .cell.circle::before,
 .cell_Container.circle .cell:not(.x):not(.circle):hover::before{
 	width: 100px;
-	height: 105px;
+	height: 90px;
 	background-color: whitesmoke;
 }
 
 .cell.circle::after,
 .cell_Container.circle .cell:not(.x):not(.circle):hover::after{
 	width: calc(100px * .7);
-	height: calc(105px * .7);
+	height: calc(90px * .7);
 	background-color: black;
 }
 
