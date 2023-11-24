@@ -1,6 +1,9 @@
 const cell = document.querySelectorAll("[data-cell]")
 const X_Class = 'x'
 const Circle_class = 'circle'
+const winningText = document.querySelector('[winning-message-text]')
+const winningMessageElm = document.querySelector('.winning_Message')
+const restartBtn = document.querySelector('#restart_Btn')
 const winning_Combinations = [
     [0,1,2],
     [3,4,5],
@@ -11,11 +14,20 @@ const winning_Combinations = [
     [0,4,8],
     [2,4,6],
 ]
-let circleTurn
 
-cell.forEach((cell) => {
-    cell.addEventListener('click', handleClick, {once:true})
-})
+startGame()
+
+restartBtn.addEventListener('click', startGame)
+
+function startGame(){
+    circleTurn = false
+    cell.forEach((cell) => {
+        cell.classList.remove(X_Class)
+        cell.classList.remove(Circle_class)
+        cell.addEventListener('click', handleClick, {once: true})
+    })
+    winningMessageElm.classList.remove('show')
+}
 
 function handleClick(e){
     const cell = e.target
@@ -24,11 +36,15 @@ function handleClick(e){
     placeMark(cell, currentClass)
     //check for win
     if(checkWin(currentClass)){
-        console.log('winner')
+        endGame(false)
+    }else if(isDraw()){
+        endGame(true)
+    }else{
+        switchTurns()
     }
     //check for draw
     //switch turns
-    switchTurns()
+    
 }
 
 function placeMark(cell, currentClass){
@@ -44,5 +60,21 @@ function checkWin(currentClass){
         return combination.every(index => {
             return cell[index].classList.contains(currentClass)
         })
+    })
+}
+
+function endGame(draw){
+    if(draw){
+        winningText.innerText = 'Draw'
+    }else{
+        winningText.innerText = `${circleTurn? "O wins!" : "X wins!"}`
+    }
+    winningMessageElm.classList.add('show')
+}
+
+function isDraw(){
+    return [...cell].every(cell => {
+        return cell.classList.contains(X_Class) ||
+        cell.classList.contains(Circle_class)
     })
 }

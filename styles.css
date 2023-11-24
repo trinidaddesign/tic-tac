@@ -27,8 +27,8 @@ body{
 
 .cell_Container{
   grid-area: 2/ 1 / 3 / 2 ;
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -38,7 +38,6 @@ body{
 
 .cell {
   border: 1px solid white;
-  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
